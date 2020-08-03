@@ -1,0 +1,47 @@
+containers:
+  yamllint:
+    build_directory: .batect/yamllint
+    volumes:
+      - local: .
+        container: /code
+        options: ro
+    working_directory: /code
+
+  hadolint:
+    image: hadolint/hadolint:v1.18.0
+    volumes:
+      - local: .
+        container: /code
+        options: ro
+    working_directory: /code
+
+tasks:
+  check-format:
+    description: Run all formatting check tasks.
+    group: Formatting check tasks
+    prerequisites:
+      - check-format:yaml
+
+  check-format:yaml:
+    description: Check formatting of all YAML files.
+    group: Formatting check tasks
+    run:
+      container: yamllint
+      command: yamllint .
+
+  lint:
+    description: Run all linting tasks.
+    group: Linting tasks
+    prerequisites:
+      - lint:docker
+      - lint:shell
+
+  lint:docker:
+    description: Lint Dockerfiles.
+    group: Linting tasks
+    run:
+      container: hadolint
+      command: sh -c "hadolint $(find . -name Dockerfile)"
+
+include:
+  - batect-bundle.yml
