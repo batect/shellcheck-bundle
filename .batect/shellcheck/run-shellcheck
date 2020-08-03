@@ -1,0 +1,12 @@
+#! /usr/bin/env bash
+
+set -euo pipefail
+
+readarray -d '' FILES < <(find . -name '*.sh' -print0)
+
+if [ ${#FILES[@]} -eq 0 ]; then
+  echo "No shell scripts found."
+  exit 0
+fi
+
+shellcheck "${FILES[@]}"

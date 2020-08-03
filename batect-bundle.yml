@@ -13,4 +13,4 @@ tasks:
     group: Linting tasks
     run:
       container: shellcheck
-      command: sh -c "shellcheck $(find . -name '*.sh')"
+      command: run-shellcheck
