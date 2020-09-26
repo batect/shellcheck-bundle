@@ -20,7 +20,7 @@ tasks:
     description: Run all formatting check tasks.
     group: Formatting check tasks
     prerequisites:
-      - check-format:yaml
+      - check-format:*
 
   check-format:yaml:
     description: Check formatting of all YAML files.
@@ -33,8 +33,7 @@ tasks:
     description: Run all linting tasks.
     group: Linting tasks
     prerequisites:
-      - lint:docker
-      - lint:shell
+      - lint:*
 
   lint:docker:
     description: Lint Dockerfiles.
