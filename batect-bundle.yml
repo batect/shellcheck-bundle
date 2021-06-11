@@ -2,7 +2,7 @@ containers:
   shellcheck:
     build_directory: .batect/shellcheck
     volumes:
-      - local: .
+      - local: <{batect.project_directory}
         container: /code
         options: ro
     working_directory: /code
