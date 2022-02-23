@@ -1,7 +1,6 @@
-FROM alpine:3.15.0
+FROM koalaman/shellcheck-alpine:v0.8.0
 
 RUN apk add --no-cache \
-    bash=5.1.16-r0 \
-    shellcheck=0.7.2-r2
+    bash=5.1.4-r0
 
 COPY run-shellcheck /usr/local/bin
