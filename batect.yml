@@ -8,7 +8,7 @@ containers:
     working_directory: /code
 
   hadolint:
-    image: hadolint/hadolint:v2.9.2-alpine
+    image: hadolint/hadolint:v2.9.3-alpine
     volumes:
       - local: .
         container: /code
